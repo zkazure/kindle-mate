@@ -21,7 +21,7 @@
 (defvar kindle-mate-book-notes "")
 (defconst kindle-mate-split-string "==========")
 
-(defun kindle-mate-resets-parameters ()
+(defun kindle-mate-reset-parameters ()
   "reset some important parameters"
   (setq kindle-mate-full-clippings ""
         kindle-mate-book-name ""

@@ -1,7 +1,7 @@
 (require 'ert)
 (require 'kindle-mate)
 
-(ert-deftest kindle-mate-resets-parameters-test ()
+(ert-deftest kindle-mate-reset-parameters-test ()
   (let ((kindle-mate-full-clippings "x")
         (kindle-mate-book-name "y")
         (kindle-mate-book-log "z")
