@@ -57,6 +57,7 @@
   )
 
 (defun kindle-mate-set-name-pattern (fuzzy-book-name)
+  "set the name pattern based on fuzzy-book-name"
   (let ((pattern (rx line-start
                      (* anything)
                      (literal fuzzy-book-name)
@@ -65,12 +66,14 @@
     pattern))
 
 (defun kindle-mate-get-real-book-name (pattern str)
+  "get the real book name based on pattern"
   (cl-some (lambda (line)
              (when (string-match pattern line)
                (string-trim (match-string 0 line))))
            (split-string str "\n" t)))
 
 (defun kindle-mate-process-book-data (book-data)
+  "add all notes corresponding to target book to kindle-mate-book-notes"
   (when (and book-data
              (> (length book-data) 0)
              (string= kindle-mate-book-name
