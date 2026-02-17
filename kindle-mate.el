@@ -29,5 +29,12 @@
         kindle-mate-book-notes ""
         ))
 
+(defun kindle-mate-split-into-chunks (str)
+  "split str into chunks by split-string"
+  (let ((chunks
+         (split-string str kindle-mate-split-string t)))
+    chunks)
+  )
+
 (provide 'kindle-mate)
 ;;; kindle-mate.el ends here

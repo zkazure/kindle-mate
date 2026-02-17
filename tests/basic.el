@@ -11,3 +11,9 @@
     (should (equal kindle-mate-book-name ""))
     (should (equal kindle-mate-book-log ""))
     (should (equal kindle-mate-book-notes ""))))
+
+(ert-deftest kindle-mate-split-into-chunks-test ()
+  (let ((kindle-mate-split-string "=="))
+    (should (equal (kindle-mate-split-into-chunks
+                    "==a==b==c==")
+                   '("a" "b" "c")))))
