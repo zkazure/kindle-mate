@@ -13,9 +13,12 @@
 
 ;;; Code:
 
-(defvar kindle-mate-clippings-path
+(defcustom kindle-mate-clippings-path
   (concat "/run/media/" (user-login-name)
-          "/Kindle/documents/My Clippings.txt"))
+          "/Kindle/documents/My Clippings.txt")
+  "Path to Kindle My Clippings.txt."
+  :type 'file
+  :group 'kindle-mate)
 (defvar kindle-mate-full-clippings "")
 (defvar kindle-mate-book-name "")
 (defvar kindle-mate-book-log "")
