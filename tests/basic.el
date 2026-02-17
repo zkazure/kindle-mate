@@ -21,3 +21,12 @@
     (should (equal (kindle-mate-split-into-chunks
                     "==a==b==c==")
                    '("a" "b" "c")))))
+
+(ert-deftest kindle-mate-split-into-book-data-test ()
+  (let* ((chunk "围城 (钱钟书)\n\nlog time\n\n\n这一张文凭，仿佛有亚当、夏娃下身那片树叶的功用，可以遮羞包丑；小小一方纸能把一个人的空疏、寡陋、愚笨都掩盖起来\n")
+         (result (kindle-mate-split-into-book-data chunk)))
+    (should (equal (alist-get 'name result) "围城 (钱钟书)"))
+    (should (equal (alist-get 'log result) "log time"))
+    (should (equal (alist-get 'note result)
+                   '("这一张文凭，仿佛有亚当、夏娃下身那片树叶的功用，可以遮羞包丑；小小一方纸能把一个人的空疏、寡陋、愚笨都掩盖起来"))))
+  )
