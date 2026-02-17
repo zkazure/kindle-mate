@@ -12,9 +12,9 @@
     (should (equal kindle-mate-book-log ""))
     (should (equal kindle-mate-book-notes ""))))
 
-(ert-deftest kindle-mate-gets-full-clippings-test ()
+(ert-deftest kindle-mate-get-full-clippings-test ()
   (let ((kindle-mate-clippings-path "./My Clippings.txt"))
-    (should (>  (length (kindle-mate-get-full-clippings)) 0))))
+    (should (> (length (kindle-mate-get-full-clippings)) 0))))
 
 (ert-deftest kindle-mate-split-into-chunks-test ()
   (let ((kindle-mate-split-string "=="))
