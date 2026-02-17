@@ -64,5 +64,11 @@
                      line-end)))
     pattern))
 
+(defun kindle-mate-get-real-name (pattern str)
+  (cl-some (lambda (line)
+             (when (string-match pattern line)
+               (string-trim (match-string 0 line))))
+           (split-string str "\n" t)))
+
 (provide 'kindle-mate)
 ;;; kindle-mate.el ends here

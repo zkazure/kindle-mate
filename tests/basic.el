@@ -36,3 +36,10 @@
          (result (kindle-mate-set-name-pattern fuzzy-book-name))
          (answer "^[^z-a]*围城[^z-a]*$"))
     (should (equal result answer))))
+
+(ert-deftest kindle-mate-get-real-name-test ()
+  (let* ((pattern "^[^z-a]*围城[^z-a]*$")
+         (str "围城（钱钟书）\nWhat Does It All Mean? (Thomas Nagel;)\n蛇结（弗朗索瓦·莫里亚克）")
+         (result (kindle-mate-get-real-name pattern str))
+         (answer "围城（钱钟书）"))
+    (should (equal result answer))))
