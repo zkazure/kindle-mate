@@ -29,6 +29,11 @@
         kindle-mate-book-notes ""
         ))
 
+(defun kindle-mate-get-full-clippings ()
+  (with-temp-buffer
+    (insert-file-contents kindle-mate-clippings-path)
+    (string-replace "\r" "\n" (buffer-string))))
+
 (defun kindle-mate-split-into-chunks (str)
   "split str into chunks by split-string"
   (let ((chunks
