@@ -13,6 +13,14 @@
 
 ;;; Code:
 
+(defvar kindle-mate-clippings-path
+  (concat "/run/media/" (user-login-name) "/Kindle/"))
+(defvar kindle-mate-full-clippings "")
+(defvar kindle-mate-book-name "")
+(defvar kindle-mate-book-log "")
+(defvar kindle-mate-book-notes "")
+(defconst kindle-mate-split-string "==========")
+
 
 (provide 'kindle-mate)
 ;;; kindle-mate.el ends here
