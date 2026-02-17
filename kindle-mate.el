@@ -103,5 +103,11 @@
   kindle-mate-book-notes
   )
 
+(defun kindle-mate-kill-new-notes (fuzzy-book-name)
+  "get notes into kill-ring"
+  (interactive "sTarget book name:")
+  (kill-new (kindle-mate-get-target-notes fuzzy-book-name))
+  )
+
 (provide 'kindle-mate)
 ;;; kindle-mate.el ends here
