@@ -2,3 +2,11 @@
 
 This extension tries to read clippings from =kindle/My Clippins.txt=,
 filter with fuzzy book name, and output corresponding book notes.
+
+* Get Started
+#+begin_src elisp
+  (require 'kindle-mate)
+  (setq kindle-mate-clippings-path "/path/to/My Clippings.txt")
+#+end_src
+
+call ~kindle-mate-kill-new-notes~ to get target notes.
