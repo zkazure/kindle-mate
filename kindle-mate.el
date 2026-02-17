@@ -42,14 +42,17 @@
     chunks)
   )
 
+(defun kindle-mate-normalize-name (str)
+  (string-remove-prefix "\ufeff" (string-trim str)))
+
 (defun kindle-mate-split-into-book-data (chunk)
   "split every chunk into book-data"
   (let ((chunk (string-trim chunk)))
     (unless (string-empty-p chunk)
       (let* ((lines (split-string chunk "\n" t))
-             (book-name (car lines))
+             (book-name (kindle-mate-normalize-name (car lines)))
              (book-log (cadr lines))
-             (book-note (cddr lines)))
+             (book-note (string-join (cddr lines) "\n")))
         `((name . ,book-name)
           (log . ,book-log)
           (note . ,book-note))
@@ -69,7 +72,7 @@
   "get the real book name based on pattern"
   (cl-some (lambda (line)
              (when (string-match pattern line)
-               (string-trim (match-string 0 line))))
+               (kindle-mate-normalize-name (string-trim (match-string 0 line)))))
            (split-string str "\n" t)))
 
 (defun kindle-mate-process-book-data (book-data)
@@ -83,6 +86,22 @@
                   "\n\n"
                   (alist-get 'note book-data)))
     ))
+
+(defun kindle-mate-get-target-notes (fuzzy-book-name)
+  "interactive function to return target book notes"
+  (interactive "sTarget book name:")
+  (kindle-mate-reset-parameters)
+  (setq kindle-mate-full-clippings (kindle-mate-get-full-clippings))
+
+  (let ((pattern (kindle-mate-set-name-pattern fuzzy-book-name)))
+    (setq kindle-mate-book-name
+          (kindle-mate-get-real-book-name pattern kindle-mate-full-clippings)))
+
+  (let ((chunks (kindle-mate-split-into-chunks kindle-mate-full-clippings)))
+    (dolist (chunk chunks)
+      (kindle-mate-process-book-data (kindle-mate-split-into-book-data chunk))))
+  kindle-mate-book-notes
+  )
 
 (provide 'kindle-mate)
 ;;; kindle-mate.el ends here

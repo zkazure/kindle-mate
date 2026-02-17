@@ -52,3 +52,11 @@
          (result (kindle-mate-process-book-data book-data))
          (answer "\n\nnote"))
     (should (equal result answer))))
+
+(ert-deftest kindle-mate-get-target-notes-test ()
+  (let* ((kindle-mate-clippings-path "./My Clippings.txt")
+         (fuzzy-book-name "围城")
+         (result (kindle-mate-get-target-notes fuzzy-book-name))
+         (answer "\n\n我们常把自己的写作冲动误认为自己的写作才能，自以为要写就意味着会写。\n\n方鸿渐受到两面夹攻，才知道留学文凭的重要。这一张文凭，仿佛有亚当、夏娃下身那片树叶的功用，可以遮羞包丑；小小一方纸能把一个人的空疏、寡陋、愚笨都掩盖起来"))
+    (should (equal result answer))
+    ))
