@@ -70,5 +70,16 @@
                (string-trim (match-string 0 line))))
            (split-string str "\n" t)))
 
+(defun kindle-mate-process-book-data (book-data)
+  (when (and book-data
+             (> (length book-data) 0)
+             (string= kindle-mate-book-name
+                      (alist-get 'name book-data)))
+    (setq kindle-mate-book-notes
+          (concat kindle-mate-book-notes
+                  "\n\n"
+                  (alist-get 'note book-data)))
+    ))
+
 (provide 'kindle-mate)
 ;;; kindle-mate.el ends here

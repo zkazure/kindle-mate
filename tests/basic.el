@@ -43,3 +43,12 @@
          (result (kindle-mate-get-real-book-name pattern str))
          (answer "围城（钱钟书）"))
     (should (equal result answer))))
+
+(ert-deftest kindle-mate-process-book-data-test ()
+  (let* ((book-data '((name . "围城")
+                      (log . "time")
+                      (note . "note")))
+         (kindle-mate-book-name "围城")
+         (result (kindle-mate-process-book-data book-data))
+         (answer "\n\nnote"))
+    (should (equal result answer))))
