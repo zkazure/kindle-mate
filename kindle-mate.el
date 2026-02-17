@@ -14,7 +14,8 @@
 ;;; Code:
 
 (defvar kindle-mate-clippings-path
-  (concat "/run/media/" (user-login-name) "/Kindle/"))
+  (concat "/run/media/" (user-login-name)
+          "/Kindle/documents/My Clippings.txt"))
 (defvar kindle-mate-full-clippings "")
 (defvar kindle-mate-book-name "")
 (defvar kindle-mate-book-log "")
@@ -39,6 +40,20 @@
   (let ((chunks
          (split-string str kindle-mate-split-string t)))
     chunks)
+  )
+
+(defun kindle-mate-split-into-book-data (chunk)
+  "split every chunk into book-data"
+  (let ((chunk (string-trim chunk)))
+    (unless (string-empty-p chunk)
+      (let* ((lines (split-string chunk "\n" t))
+             (book-name (car lines))
+             (book-log (cadr lines))
+             (book-note (cddr lines)))
+        `((name . ,book-name)
+          (log . ,book-log)
+          (note . ,book-note))
+        )))
   )
 
 (provide 'kindle-mate)
