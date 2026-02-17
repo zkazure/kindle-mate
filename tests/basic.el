@@ -30,3 +30,9 @@
     (should (equal (alist-get 'note result)
                    '("这一张文凭，仿佛有亚当、夏娃下身那片树叶的功用，可以遮羞包丑；小小一方纸能把一个人的空疏、寡陋、愚笨都掩盖起来"))))
   )
+
+(ert-deftest kindle-mate-set-name-pattern-test ()
+  (let* ((fuzzy-book-name "围城")
+         (result (kindle-mate-set-name-pattern fuzzy-book-name))
+         (answer "^[^z-a]*围城[^z-a]*$"))
+    (should (equal result answer))))

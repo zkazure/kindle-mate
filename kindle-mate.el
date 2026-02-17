@@ -56,5 +56,13 @@
         )))
   )
 
+(defun kindle-mate-set-name-pattern (fuzzy-book-name)
+  (let ((pattern (rx line-start
+                     (* anything)
+                     (literal fuzzy-book-name)
+                     (* anything)
+                     line-end)))
+    pattern))
+
 (provide 'kindle-mate)
 ;;; kindle-mate.el ends here
