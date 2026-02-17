@@ -64,7 +64,7 @@
                      line-end)))
     pattern))
 
-(defun kindle-mate-get-real-name (pattern str)
+(defun kindle-mate-get-real-book-name (pattern str)
   (cl-some (lambda (line)
              (when (string-match pattern line)
                (string-trim (match-string 0 line))))
